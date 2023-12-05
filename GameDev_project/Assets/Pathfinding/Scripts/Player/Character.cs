@@ -10,6 +10,7 @@ public class Character : MonoBehaviour
     public Tile characterTile;
     [SerializeField]
     LayerMask GroundLayerMask;
+    [SerializeField] bool isEnemy = false;
     #endregion
 
     private void Awake()
