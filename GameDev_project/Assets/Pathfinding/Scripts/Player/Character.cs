@@ -38,7 +38,7 @@ public class Character : MonoBehaviour
         Debug.Log("Unable to find a start position");
     }
 
-    IEnumerator MoveThroughPath(Path path)
+    public IEnumerator MoveThroughPath(Path path)
     {
         int step = 0;
         int pathlength = Mathf.Clamp(path.tilesInPath.Length, 0, movedata.MaxMove + 1);

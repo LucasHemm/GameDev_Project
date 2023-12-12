@@ -9,7 +9,7 @@ public class Pathfinder : MonoBehaviour
     [SerializeField]
     LayerMask tileMask;
 
-    Frontier currentFrontier = new Frontier();
+    public Frontier currentFrontier = new Frontier();
     #endregion
 
     private void Start()
@@ -76,7 +76,7 @@ public class Pathfinder : MonoBehaviour
     /// </summary>
     /// <param name="origin"></param>
     /// <returns></returns>
-    private List<Tile> FindAdjacentTiles(Tile origin)
+    public List<Tile> FindAdjacentTiles(Tile origin)
     {
         List<Tile> tiles = new List<Tile>();
         Vector3 direction = Vector3.forward;
@@ -94,6 +94,35 @@ public class Pathfinder : MonoBehaviour
             {
                 Tile hitTile = hit.transform.GetComponent<Tile>();
                 if (hitTile.Occupied == false)
+                    tiles.Add(hitTile);
+            }
+        }
+
+        if (origin.connectedTile != null)
+            tiles.Add(origin.connectedTile);
+
+        return tiles;
+    }
+
+
+    public List<Tile> FindAdjacentTilesForEnemy(Tile origin)
+    {
+        List<Tile> tiles = new List<Tile>();
+        Vector3 direction = Vector3.forward;
+        float rayLength = 50f;
+        float rayHeightOffset = 1f;
+
+        //Rotate a raycast in 60 degree steps and find all adjacent tiles
+        for (int i = 0; i < 6; i++)
+        {
+            direction = Quaternion.Euler(0f, 60f, 0f) * direction;
+
+            Vector3 aboveTilePos = (origin.transform.position + direction).With(y: origin.transform.position.y + rayHeightOffset);
+
+            if (Physics.Raycast(aboveTilePos, Vector3.down, out RaycastHit hit, rayLength, tileMask))
+            {
+                Tile hitTile = hit.transform.GetComponent<Tile>();
+            
                     tiles.Add(hitTile);
             }
         }
@@ -131,8 +160,10 @@ public class Pathfinder : MonoBehaviour
         while (current != origin)
         {
             tiles.Add(current);
-            if (current.parent != null)
+            if (current.parent != null){
                 current = current.parent;
+                Debug.Log("Parent: " + current.parent);
+            }
             else
                 break;
         }
@@ -142,6 +173,8 @@ public class Pathfinder : MonoBehaviour
 
         Path path = new Path();
         path.tilesInPath = tiles.ToArray();
+
+        Debug.Log("Path length: " + path.tilesInPath.Length);
 
         return path;
     }
