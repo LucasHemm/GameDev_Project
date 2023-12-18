@@ -67,12 +67,27 @@ public class Interact : MonoBehaviour
         currentTile = null;
     }
 
-    private void SelectCharacter()
+   private void SelectCharacter()
+{
+    selectedCharacter = currentTile.occupyingCharacter;
+
+    // Check if the selected character is an enemy
+    if (IsEnemy(selectedCharacter) || selectedCharacter.hasMoved)
     {
-        selectedCharacter = currentTile.occupyingCharacter;
-        pathfinder.FindPaths(selectedCharacter);
-        GetComponent<AudioSource>().PlayOneShot(pop);
+        // If it's an enemy, do not select it
+        selectedCharacter = null;
+        return;
     }
+
+    pathfinder.FindPaths(selectedCharacter);
+    GetComponent<AudioSource>().PlayOneShot(pop);
+}
+private bool IsEnemy(Character character)
+{
+    
+    return character != null && character.isEnemy; // Replace IsEnemy with your actual property or logic
+}
+
 
     private void NavigateToTile()
     {
