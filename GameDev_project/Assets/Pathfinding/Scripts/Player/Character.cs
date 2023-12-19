@@ -12,11 +12,41 @@ public class Character : MonoBehaviour
     LayerMask GroundLayerMask;
     [SerializeField] public bool isEnemy = false;
     [SerializeField] public bool hasMoved = false;
+
+    public int maxHealth = 100;
+    public int currentHealth;
+
+    public HealthBar healthBar;
+
+
+
+
+
+
     #endregion
 
     private void Awake()
     {
         FindTileAtStart();
+        currentHealth = maxHealth;
+        healthBar.SetMaxHealth(maxHealth);
+    }
+
+    public void TakeDamage(int damage)
+    {
+        currentHealth -= damage;
+        healthBar.SetHealth(currentHealth);
+    
+    }
+
+    void Update()
+    {
+        //check if spacebar is pressed 
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            //if spacebar is pressed, call TakeDamage function
+            TakeDamage(20);
+        }
     }
 
     /// <summary>
