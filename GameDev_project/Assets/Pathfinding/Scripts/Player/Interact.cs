@@ -12,7 +12,7 @@ public class Interact : MonoBehaviour
 
     Camera mainCam;
     Tile currentTile;
-    Character selectedCharacter;
+    public Character selectedCharacter;
     Pathfinder pathfinder;
     #endregion
 

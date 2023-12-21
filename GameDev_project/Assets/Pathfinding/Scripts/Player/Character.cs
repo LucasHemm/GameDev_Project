@@ -12,6 +12,7 @@ public class Character : MonoBehaviour
     LayerMask GroundLayerMask;
     [SerializeField] public bool isEnemy = false;
     [SerializeField] public bool hasMoved = false;
+    [SerializeField] public Weapon weapon;
 
     public int maxHealth = 100;
     public int currentHealth;
