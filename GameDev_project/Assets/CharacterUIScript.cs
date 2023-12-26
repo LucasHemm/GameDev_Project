@@ -22,20 +22,23 @@ public class CharacterUIScript : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {   
-        //set basic to be the sprite of the interct selected cahracter weapon sprite
+{   
+    // Check if the interact selected character is not null
+    if(interact.selectedCharacter != null)
+    {
+        // Set basic attack button to the sprite of the interact selected character weapon sprite
+        basicAttack.GetComponent<Image>().sprite = interact.selectedCharacter.weapon.sprite;
 
-        //check if the interact selected character is not null
-        if(interact.selectedCharacter != null)
-        {
-            //set basic attack button to the sprite of the interact selected character weapon sprite
-            basicAttack.GetComponent<Image>().sprite = interact.selectedCharacter.weapon.sprite;
-
-        }
-        
-        //basicAttack.sprite = interact.selectedCharacter.weapon.sprite;
-        //set basicattack source image to be the sprite of the interact selected character weapon sprite
-        //basicAttack.GetComponent<BasicAttack>().sourceImage = interact.selectedCharacter.weapon.sprite;
-        
+        // Enable the button
+        basicAttack.gameObject.SetActive(true);
     }
+    else
+    {
+        // Set a default sprite or do nothing if there's no selected character
+        // basicAttack.GetComponent<Image>().sprite = [Your Default Sprite];
+
+        // Disable the button
+        basicAttack.gameObject.SetActive(false);
+    }
+}
 }

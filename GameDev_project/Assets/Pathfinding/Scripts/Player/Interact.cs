@@ -30,6 +30,11 @@ public class Interact : MonoBehaviour
         MouseUpdate();
     }
 
+    public void NewMoveCharacter()
+    {
+        InspectCharacter();
+    }
+
     private void MouseUpdate()
     {
         if (!Physics.Raycast(mainCam.ScreenPointToRay(Input.mousePosition), out RaycastHit hit, 200f, interactMask))
