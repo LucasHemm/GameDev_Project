@@ -22,7 +22,7 @@ public class CharacterUIScript : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-{   
+    {   
     // Check if the interact selected character is not null
     if(interact.selectedCharacter != null)
     {
@@ -40,5 +40,5 @@ public class CharacterUIScript : MonoBehaviour
         // Disable the button
         basicAttack.gameObject.SetActive(false);
     }
-}
+    }
 }

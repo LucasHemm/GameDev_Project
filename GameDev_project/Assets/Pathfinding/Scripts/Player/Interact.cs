@@ -109,7 +109,7 @@ private bool IsEnemy(Character character)
             GetComponent<AudioSource>().PlayOneShot(click);
             selectedCharacter.Move(currentPath);
             pathfinder.ResetPathfinder();
-            selectedCharacter = null;
+            //selectedCharacter = null;
         }
     }
 }

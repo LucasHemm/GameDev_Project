@@ -5,9 +5,9 @@ using UnityEngine;
 public class Pathfinder : MonoBehaviour
 {
     #region member fields
-    PathIllustrator illustrator;
+    public PathIllustrator illustrator;
     [SerializeField]
-    LayerMask tileMask;
+    public LayerMask tileMask;
 
     public Frontier currentFrontier = new Frontier();
     #endregion
@@ -55,7 +55,7 @@ public class Pathfinder : MonoBehaviour
         illustrator.IllustrateFrontier(currentFrontier);
     }
 
-    bool IsValidTile(Tile tile, int maxcost)
+    public bool IsValidTile(Tile tile, int maxcost)
     {
         bool valid = false;
 
@@ -65,7 +65,7 @@ public class Pathfinder : MonoBehaviour
         return valid;
     }
 
-    void AddTileToFrontier(Tile tile)
+    public void AddTileToFrontier(Tile tile)
     {
         tile.InFrontier = true;
         currentFrontier.tiles.Add(tile);
