@@ -162,7 +162,7 @@ public class Pathfinder : MonoBehaviour
             tiles.Add(current);
             if (current.parent != null){
                 current = current.parent;
-                Debug.Log("Parent: " + current.parent);
+                //Debug.Log("Parent: " + current.parent);
             }
             else
                 break;
@@ -174,7 +174,7 @@ public class Pathfinder : MonoBehaviour
         Path path = new Path();
         path.tilesInPath = tiles.ToArray();
 
-        Debug.Log("Path length: " + path.tilesInPath.Length);
+        //Debug.Log("Path length: " + path.tilesInPath.Length);
 
         return path;
     }

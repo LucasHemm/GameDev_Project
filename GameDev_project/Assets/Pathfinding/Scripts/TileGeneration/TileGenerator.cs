@@ -1,9 +1,12 @@
+using System;
 using UnityEngine;
+using System.Collections.Generic;
 
 public class TileGenerator : MonoBehaviour
 {
     void ClearGrid()
     {
+        
         for (int i = transform.childCount; i >= transform.childCount; i--)
         {
             if (transform.childCount == 0)
@@ -39,6 +42,56 @@ public class TileGenerator : MonoBehaviour
         }
     }
 
+    public void AutoGenerateGrid(GameObject tile, Vector2Int gridSize)
+{
+    int numberOfTiles = gridSize.x * gridSize.y;
+    int tilesToBeDeleted = (int) Math.Floor(numberOfTiles * 0.07f);
+    if (numberOfTiles < 70)
+    {
+        tilesToBeDeleted = (int) Math.Floor(numberOfTiles * 0.04f);
+    }
+    
+    List<Vector2Int> tiles = new List<Vector2Int>();
+
+    for (int i = 0; i < tilesToBeDeleted; i++)
+    {
+        Vector2Int randomTile = new Vector2Int(UnityEngine.Random.Range(0, gridSize.x), UnityEngine.Random.Range(0, gridSize.y));
+
+        if (!tiles.Contains(randomTile))
+        {
+            tiles.Add(randomTile);
+        }
+        else
+        {
+            i--;
+        }
+    }
+
+    ClearGrid();
+    Vector2 tileSize = DetermineTileSize(tile.GetComponent<MeshFilter>().sharedMesh.bounds);
+    Vector3 position = transform.position;
+
+    for (int x = 0; x < gridSize.x; x++)
+    {
+        for (int y = 0; y < gridSize.y; y++)
+        {
+            Vector2Int currentTile = new Vector2Int(x, y);
+
+            if (tiles.Contains(currentTile))
+            {
+                continue;
+            }
+
+            position.x = transform.position.x + tileSize.x * x;
+            position.z = transform.position.z + tileSize.y * y;
+            position.z += OffsetUnevenRow(x, tileSize.y);
+
+            CreateTile(tile, position, currentTile);
+        }
+    }
+}
+
+
     float OffsetUnevenRow(float x, float y)
     {
         return x % 2 == 0 ? y / 2 : 0f;
@@ -48,7 +101,9 @@ public class TileGenerator : MonoBehaviour
     {
         GameObject newTile = Instantiate(t.gameObject, pos, Quaternion.identity, transform);
         newTile.name = "Tile " + id;
+        
 
-        Debug.Log("Created a tile!");
     }
+
 }
+

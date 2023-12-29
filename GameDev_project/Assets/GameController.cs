@@ -95,10 +95,10 @@ public class GameController : MonoBehaviour
                     heroTile = closestTileToHero;
                     heroTile.Occupied = true;
                 }
-
-                Debug.Log("HeroTile: " + heroTile);
-                Debug.Log("EnemyTile: " + enemyTile);
-                Debug.Log("test");
+//
+                //Debug.Log("HeroTile: " + heroTile);
+                //Debug.Log("EnemyTile: " + enemyTile);
+                //Debug.Log("test");
 
                 Path path = pathfinder.PathBetween(heroTile, enemyTile);
                 enemyCharacter.Move(path);
@@ -115,7 +115,7 @@ public class GameController : MonoBehaviour
         enemy.GetComponent<Character>().hasMoved = true;
     }
 
-    Debug.Log("Enemy Turn finished");
+    //Debug.Log("Enemy Turn finished");
     isPlayerTurn = true;
 
     foreach (GameObject enemy in enemies)
