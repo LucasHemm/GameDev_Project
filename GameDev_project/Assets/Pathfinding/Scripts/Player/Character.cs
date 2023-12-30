@@ -12,9 +12,17 @@ public class Character : MonoBehaviour
     LayerMask GroundLayerMask;
     [SerializeField] public bool isEnemy = false;
     [SerializeField] public bool hasMoved = false;
+    [SerializeField] public bool hasAttacked = false;
+    [SerializeField] public bool isAttacking = false;
     [SerializeField] public Weapon weapon;
+    [SerializeField] public Ability ability1;
+    [SerializeField] public Ability ability2;
+    public Armor armor;
+    public CharacterClass characterClass;
+    [SerializeField] public Trinket trinket;
+    
 
-    public int maxHealth = 100;
+    public int maxHealth;
     public int currentHealth;
 
     public HealthBar healthBar;
@@ -28,13 +36,31 @@ public class Character : MonoBehaviour
 
     private void Awake()
     {
-        FindTileAtStart();
-        currentHealth = maxHealth;
-        healthBar.SetMaxHealth(maxHealth);
+    FindTileAtStart();
+    if (characterClass != null)
+        maxHealth += characterClass.health;
+    if(armor != null)
+        maxHealth += armor.bonusHealth;
+    currentHealth = maxHealth;
+    healthBar.SetMaxHealth(maxHealth);
     }
 
-    public void TakeDamage(int damage)
+    public void TakeDamage(int damage, string damageType)
     {
+        if (damageType == "physical")
+        {
+            if (armor != null)
+            {
+                damage -= armor.defense;
+            }
+        }
+        else if (damageType == "magical")
+        {
+            if (armor != null)
+            {
+                damage -= armor.magicDefense;
+            }
+        }
         currentHealth -= damage;
         healthBar.SetHealth(currentHealth);
     
@@ -46,7 +72,7 @@ public class Character : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             //if spacebar is pressed, call TakeDamage function
-            TakeDamage(20);
+            TakeDamage(20, "physical");
         }
     }
 
@@ -67,7 +93,7 @@ public class Character : MonoBehaviour
             return;
         }
 
-        Debug.Log("Unable to find a start position");
+        
     }
 
     public IEnumerator MoveThroughPath(Path path)

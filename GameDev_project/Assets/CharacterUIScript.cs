@@ -9,6 +9,8 @@ public class CharacterUIScript : MonoBehaviour
 
     public Interact interact;
     public Button basicAttack;
+    public Button ability1;
+    public Button ability2;
 
 
 
@@ -24,13 +26,17 @@ public class CharacterUIScript : MonoBehaviour
     void Update()
     {   
     // Check if the interact selected character is not null
-    if(interact.selectedCharacter != null)
+    if(interact.selectedCharacter != null && interact.selectedCharacter.hasAttacked == false)
     {
         // Set basic attack button to the sprite of the interact selected character weapon sprite
         basicAttack.GetComponent<Image>().sprite = interact.selectedCharacter.weapon.sprite;
+        ability1.GetComponent<Image>().sprite = interact.selectedCharacter.ability1.sprite;
+        ability2.GetComponent<Image>().sprite = interact.selectedCharacter.ability2.sprite;
 
         // Enable the button
         basicAttack.gameObject.SetActive(true);
+        ability1.gameObject.SetActive(true);
+        ability2.gameObject.SetActive(true);
     }
     else
     {
@@ -39,6 +45,8 @@ public class CharacterUIScript : MonoBehaviour
 
         // Disable the button
         basicAttack.gameObject.SetActive(false);
+        ability1.gameObject.SetActive(false);
+        ability2.gameObject.SetActive(false);
     }
     }
 }

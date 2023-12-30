@@ -9,6 +9,7 @@ public class BasicAttackScript : MonoBehaviour
     public Button basicAttack;
     public Pathfinder pathfinder;
     public Weapon weapon1;
+    public Character currentCharacter;
 
     private bool isInTargetMode = false;
 
@@ -35,22 +36,22 @@ public class BasicAttackScript : MonoBehaviour
 
         if (isInTargetMode)
         {
-            Debug.Log("Entering target mode");
-            Debug.Log("Selected character is " + interact.selectedCharacter.name);
+            
             pathfinder.ResetPathfinder();
             weapon1 = interact.selectedCharacter.weapon;
+            currentCharacter = interact.selectedCharacter;
             showRangeForAction(interact.selectedCharacter, (int)interact.selectedCharacter.weapon.range);
         }
         else
         {
-            Debug.Log("Exiting target mode");
+            
             pathfinder.ResetPathfinder();
         }
     }
 
     void HandleTargetModeInput()
     {
-       int dmg = GenerateRandomDamage(weapon1);
+       int dmg = GenerateRandomDamage(weapon1,currentCharacter);
         
         if (Input.GetMouseButtonDown(0))
         {
@@ -59,11 +60,16 @@ public class BasicAttackScript : MonoBehaviour
             if (Physics.Raycast(ray, out hit))
             {
                 Character hitCharacter = hit.collider.GetComponent<Character>();
-                //debug if hitCharacter is true
+                
                 if (hitCharacter != null && hitCharacter.isEnemy)
                 {
-                    hitCharacter.TakeDamage(dmg);
-                    OnBasicAttackClick();
+                    if(pathfinder.currentFrontier.tiles.Contains(hitCharacter.characterTile))
+                    {
+                        hitCharacter.TakeDamage(dmg,"physical");
+                        currentCharacter.hasAttacked = true;
+                        OnBasicAttackClick();
+                    }
+                    
                 }
             }
         }
@@ -71,10 +77,25 @@ public class BasicAttackScript : MonoBehaviour
 
 
 
-    public int GenerateRandomDamage(Weapon weapon)
+    public int GenerateRandomDamage(Weapon weapon, Character character)
     {
+        int bonusdmg = 0;
+
+        if(character.characterClass != null)
+        {
+            if(weapon.type == "Melee")
+            {
+                bonusdmg += character.characterClass.strength;
+            }
+            else if(weapon.type == "Ranged")
+            {
+                bonusdmg += character.characterClass.agility;
+            }
+        }
+
         int randomDamage = UnityEngine.Random.Range(weapon.minDamage, weapon.maxDamage + 1);
-        Debug.Log("Random damage is " + randomDamage);
+        randomDamage += bonusdmg;
+        
         return randomDamage;
     }
 

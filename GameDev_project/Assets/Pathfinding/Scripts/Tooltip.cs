@@ -10,7 +10,6 @@ public class Tooltip : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
     private void CreateMessage()
     {
-        Debug.Log("CreateMessage****************");
 
         // Make a method that makes it so if it's a basicAttack type it hovers over, it will create a message with its price, min and max dmg, its range, int type, and its description
         if (type == "basicAttack")
@@ -22,11 +21,32 @@ public class Tooltip : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
                     + "Type: " + interact.selectedCharacter.weapon.type + "\n"
                     + "Description: " + interact.selectedCharacter.weapon.description;
         }
+        if(type == "ability1"){
+            message = "abilityName: " + interact.selectedCharacter.ability1.abilityName + "\n"
+                    + "Description: " + interact.selectedCharacter.ability1.description + "\n"
+                    + "Range: " + interact.selectedCharacter.ability1.range + "\n"
+                    + "Min Damage: " + interact.selectedCharacter.ability1.minDamage + "\n"
+                    + "Max Damage: " + interact.selectedCharacter.ability1.maxDamage + "\n"
+                    + "Damage Type: " + interact.selectedCharacter.ability1.damageType + "\n"
+                    + "Modifier: " + interact.selectedCharacter.ability1.modifier + "\n"
+                    + "Uses: " + interact.selectedCharacter.ability1.uses;
+        }
+        if(type == "ability2"){
+            message = "abilityName: " + interact.selectedCharacter.ability2.abilityName + "\n"
+                    + "Description: " + interact.selectedCharacter.ability2.description + "\n"
+                    + "Range: " + interact.selectedCharacter.ability2.range + "\n"
+                    + "Min Damage: " + interact.selectedCharacter.ability2.minDamage + "\n"
+                    + "Max Damage: " + interact.selectedCharacter.ability2.maxDamage + "\n"
+                    + "Damage Type: " + interact.selectedCharacter.ability2.damageType + "\n"
+                    + "Modifier: " + interact.selectedCharacter.ability2.modifier + "\n"
+                    + "Uses: " + interact.selectedCharacter.ability2.uses;
+        }
+
     }
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        Debug.Log("OnPointerEnter****************");
+        
 
         CreateMessage();
         TooltipManager.instance.SetandShowTooltip(message);
@@ -34,7 +54,6 @@ public class Tooltip : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        Debug.Log("OnPointerExit****************");
 
         TooltipManager.instance.HideTooltip();
     }

@@ -77,14 +77,23 @@ public class Interact : MonoBehaviour
     selectedCharacter = currentTile.occupyingCharacter;
 
     // Check if the selected character is an enemy
-    if (IsEnemy(selectedCharacter) || selectedCharacter.hasMoved)
+    if (IsEnemy(selectedCharacter))
     {
         // If it's an enemy, do not select it
         selectedCharacter = null;
         return;
     }
 
-    pathfinder.FindPaths(selectedCharacter);
+    else if (selectedCharacter.hasMoved == false)
+    {
+        pathfinder.FindPaths(selectedCharacter);
+    }   
+    else if(selectedCharacter.hasAttacked == true && selectedCharacter.hasMoved == true)
+    {
+        selectedCharacter = null;       
+        return;
+    }
+
     GetComponent<AudioSource>().PlayOneShot(pop);
 }
 private bool IsEnemy(Character character)
@@ -98,10 +107,19 @@ private bool IsEnemy(Character character)
     {
         if (selectedCharacter == null)
             return;
+        if(selectedCharacter.isAttacking == true)
+        {
+            return;
+        }
 
         if (selectedCharacter.Moving == true || currentTile.CanBeReached == false)
             return;
 
+
+        if(selectedCharacter.hasMoved == true)
+        {
+            return;
+        }
         Path currentPath = pathfinder.PathBetween(currentTile, selectedCharacter.characterTile);
 
         if (Input.GetMouseButtonDown(0))
