@@ -1,11 +1,30 @@
 {
   "version": 3,
   "targets": {
-    ".NETStandard,Version=v2.1": {}
+    ".NETStandard,Version=v2.1": {
+      "Assembly-CSharp/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.1",
+        "compile": {
+          "bin/placeholder/Assembly-CSharp.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Assembly-CSharp.dll": {}
+        }
+      }
+    }
   },
-  "libraries": {},
+  "libraries": {
+    "Assembly-CSharp/1.0.0": {
+      "type": "project",
+      "path": "Assembly-CSharp.csproj",
+      "msbuildProject": "Assembly-CSharp.csproj"
+    }
+  },
   "projectFileDependencyGroups": {
-    ".NETStandard,Version=v2.1": []
+    ".NETStandard,Version=v2.1": [
+      "Assembly-CSharp >= 1.0.0"
+    ]
   },
   "packageFolders": {
     "C:\\Users\\mrott\\.nuget\\packages\\": {}
@@ -13,9 +32,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\mrott\\Documents\\GitHub\\GameDev_Project\\GameDev_project\\Assembly-CSharp.csproj",
-      "projectName": "Assembly-CSharp",
-      "projectPath": "C:\\Users\\mrott\\Documents\\GitHub\\GameDev_Project\\GameDev_project\\Assembly-CSharp.csproj",
+      "projectUniqueName": "C:\\Users\\mrott\\Documents\\GitHub\\GameDev_Project\\GameDev_project\\Assembly-CSharp-Editor.csproj",
+      "projectName": "Assembly-CSharp-Editor",
+      "projectPath": "C:\\Users\\mrott\\Documents\\GitHub\\GameDev_Project\\GameDev_project\\Assembly-CSharp-Editor.csproj",
       "packagesPath": "C:\\Users\\mrott\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\mrott\\Documents\\GitHub\\GameDev_Project\\GameDev_project\\obj\\",
       "projectStyle": "PackageReference",
@@ -31,7 +50,11 @@
       "frameworks": {
         "netstandard2.1": {
           "targetAlias": "netstandard2.1",
-          "projectReferences": {}
+          "projectReferences": {
+            "C:\\Users\\mrott\\Documents\\GitHub\\GameDev_Project\\GameDev_project\\Assembly-CSharp.csproj": {
+              "projectPath": "C:\\Users\\mrott\\Documents\\GitHub\\GameDev_Project\\GameDev_project\\Assembly-CSharp.csproj"
+            }
+          }
         }
       },
       "warningProperties": {

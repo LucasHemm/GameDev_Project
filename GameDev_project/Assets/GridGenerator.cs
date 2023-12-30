@@ -21,17 +21,19 @@ public class GridGenerator : MonoBehaviour
     GameObject parent;
     GameObject startTile;
     Vector3 gridPosition;
-    List<GameObject> tiles = new List<GameObject>();
+    List<GameObject> tiles;
     
    
     #endregion
 
     void Start()
     {
-        startTile = GameObject.FindGameObjectWithTag("Tile");
+        //find start tile by name
+        startTile = GameObject.Find("StartTile");
         CreateGrid(RandomizeGridSize());
-        Destroy(startTile);
         tiles = new List<GameObject>(GameObject.FindGameObjectsWithTag("Tile"));
+        tiles.Remove(startTile);
+        Destroy(startTile);
         SetTileMaterial(tiles);
         
 
