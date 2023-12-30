@@ -130,7 +130,7 @@ public class Character : MonoBehaviour
         StartCoroutine(MoveThroughPath(_path));
     }
 
-    void FinalizePosition(Tile tile)
+    public void FinalizePosition(Tile tile)
     {
         transform.position = tile.transform.position;
         characterTile = tile;

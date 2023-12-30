@@ -192,7 +192,7 @@ GameObject:
   - component: {fileID: 6770487304543554646}
   m_Layer: 0
   m_Name: Enemy
-  m_TagString: Player
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -267,8 +267,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 453a1124258b2f94e9500310d8a6ec04, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movedata: {fileID: 11400000, guid: ec562346b2db1b84eab7aa6c272d3835, type: 2}
+  movedata: {fileID: 11400000, guid: bc82ad193cd2f204b81a3bc6757a013e, type: 2}
   characterTile: {fileID: 0}
   GroundLayerMask:
     serializedVersion: 2
     m_Bits: 8
+  isEnemy: 0
+  hasMoved: 0

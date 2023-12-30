@@ -183,11 +183,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 453a1124258b2f94e9500310d8a6ec04, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movedata: {fileID: 11400000, guid: dd6f1c9025f1ba945b2082ff9cda2f56, type: 2}
+  movedata: {fileID: 11400000, guid: bc82ad193cd2f204b81a3bc6757a013e, type: 2}
   characterTile: {fileID: 0}
   GroundLayerMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 8
+  isEnemy: 0
+  hasMoved: 0
 --- !u!1 &220303032207745227
 GameObject:
   m_ObjectHideFlags: 0

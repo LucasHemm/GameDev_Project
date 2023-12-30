@@ -10,6 +10,8 @@ public class GridEditor : EditorWindow
     Vector2Int gridSize = new Vector2Int(15, 12);
     #endregion
 
+    //Empty constructor
+    public GridEditor() { }
     [MenuItem("Window / Tools / Grid Generator")]
 
     public static void ShowWindow()
@@ -50,7 +52,7 @@ public class GridEditor : EditorWindow
     /// <summary>
     /// Add the TileGenerator script to a new object with the currently selected values
     /// </summary>
-    void CreateGrid()
+    public void CreateGrid()
     {
         TileGenerator tg;
 
