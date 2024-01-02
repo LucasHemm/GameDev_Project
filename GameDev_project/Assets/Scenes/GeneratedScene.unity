@@ -336,8 +336,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemies: []
   heroes: []
+  characters:
+  - {fileID: 7496943131159534745, guid: cda510faa0651694b88da65906cec485, type: 3}
+  - {fileID: 7859308168400766731, guid: a782952b491b9524e88ecfdc0fe5caf7, type: 3}
+  - {fileID: 1511681401784208872, guid: e668c13b2568c6641a96f678610e9cbf, type: 3}
+  enemyTypes:
+  - {fileID: 8561752231486868281, guid: 0dc916b69848e2742853590801511583, type: 3}
   isPlayerTurn: 0
   mainCamera: {fileID: 0}
+  levelsCleared: 0
 --- !u!4 &803214284
 Transform:
   m_ObjectHideFlags: 0
@@ -392,7 +399,7 @@ MonoBehaviour:
   - {fileID: 2100000, guid: b4420f191b92642459a0fc5a7c2586c5, type: 2}
   enemyCount: 3
   enemyPrefab: {fileID: 8561752231486868281, guid: 0dc916b69848e2742853590801511583, type: 3}
-  playerPrefab: {fileID: 7496943131159534745, guid: cda510faa0651694b88da65906cec485, type: 3}
+  gameController: {fileID: 0}
   flowers:
   - {fileID: 100000, guid: da1981c3ee8ea7e4186a753e15495628, type: 3}
   - {fileID: 100000, guid: 41ba2a6f1d128f94eba95e5213a81254, type: 3}

@@ -10,7 +10,7 @@ public class GridGenerator : MonoBehaviour
     [SerializeField] int enemyCount = 3;
     [SerializeField] GameObject enemyPrefab;
 
-    [SerializeField] GameObject playerPrefab;
+    public GameController gameController;
 
     [SerializeField] GameObject[] flowers = new GameObject[8];
 
@@ -28,6 +28,7 @@ public class GridGenerator : MonoBehaviour
 
     void Start()
     {
+        gameController = GameObject.Find("GameController").GetComponent<GameController>();
         //find start tile by name
         startTile = GameObject.Find("StartTile");
         CreateGrid(RandomizeGridSize());
@@ -40,6 +41,7 @@ public class GridGenerator : MonoBehaviour
         //Spawn enemies
         SpawnEnemies();
         SpawnPlayer();
+        gameController.StartBattle();
     }
 
      public void CreateGrid(Vector2Int gridSize)
@@ -64,7 +66,7 @@ public class GridGenerator : MonoBehaviour
         parent.transform.position = gridPosition;
     }
 
-        
+
 
 
     //Returns gridsize vector to be random numbers between 7 and 14
@@ -164,6 +166,7 @@ public class GridGenerator : MonoBehaviour
    //Spawn enemies on random tiles
     void SpawnEnemies()
     {
+        List<GameObject> enemies = new List<GameObject>();
         for (int i = 0; i < enemyCount; i++)
         {
             Tile tile = GetRandomTile();
@@ -172,9 +175,13 @@ public class GridGenerator : MonoBehaviour
                 i--;
                 continue;
             }
+            enemyPrefab = gameController.enemyTypes[Random.Range(0, gameController.enemies.Length)];
             GameObject enemy = Instantiate(enemyPrefab, tile.transform.position, Quaternion.identity);
             enemy.GetComponent<Character>().FinalizePosition(tile);
+            enemies.Add(enemy);
         }
+        gameController.enemies = enemies.ToArray();
+
     }
 
     Tile GetRandomTile()
@@ -187,15 +194,20 @@ public class GridGenerator : MonoBehaviour
 
     void SpawnPlayer()
     {
-        Tile tile = GetRandomTile();
-        if (tile.Occupied)
+        List<GameObject> heroes = new List<GameObject>();
+        foreach(GameObject hero in gameController.heroes)
         {
-            SpawnPlayer();
-            return;
+            Tile tile = GetRandomTile();
+            if (tile.Occupied)
+            {
+                SpawnPlayer();
+                return;
+            }
+            GameObject player = Instantiate(hero, tile.transform.position, Quaternion.identity);
+            player.GetComponent<Character>().FinalizePosition(tile);
+            heroes.Add(player);
         }
-        GameObject player = Instantiate(playerPrefab, tile.transform.position, Quaternion.identity);
-        player.GetComponent<Character>().FinalizePosition(tile);
-        
+        gameController.heroes = heroes.ToArray();
     }
 
     //Spawns flowers on 

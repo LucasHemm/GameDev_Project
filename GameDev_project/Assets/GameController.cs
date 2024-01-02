@@ -6,30 +6,71 @@ public class GameController : MonoBehaviour
 {
     [SerializeField] public GameObject[] enemies;
     [SerializeField] public GameObject[] heroes;
+    public GameObject[] characters = new GameObject[3];
+    public GameObject[] enemyTypes = new GameObject[1];
+
 
     [SerializeField]public bool isPlayerTurn;
     Pathfinder pathfinder;
     public Camera mainCamera; // Reference to the Main camera, assign it in the inspector
 
+    public static GameController Instance;
+    public int levelsCleared = 0;
 
     void Start()
     {
         isPlayerTurn = true; // Start with player's turn
-        enemies = GameObject.FindGameObjectsWithTag("Enemy");
+        if(levelsCleared == 0)
+        {
+            heroes = characters;
+            enemies = enemyTypes;
+        }
+        if(enemies.Length == 0)
+        {
+            enemies = GameObject.FindGameObjectsWithTag("Enemy");
+        }
+        
+        if(heroes.Length == 0)
+        {
         heroes = GameObject.FindGameObjectsWithTag("Player");
+        }
 
         if (pathfinder == null)
             pathfinder = GameObject.Find("Pathfinder").GetComponent<Pathfinder>();
 
         mainCamera = Camera.main;
-        StartCoroutine(TurnLoop());
+        
+    }
+
+    //awake method
+    void Awake()
+    {
+        if (Instance != null)
+        {
+            //destroy gameobject  immediately if there is another instance
+            Destroy(gameObject);
+            return;
+        }
+                       
+        Instance = this;
+        DontDestroyOnLoad(gameObject);
     }
 
     IEnumerator TurnLoop()
     {
 
-        while (true)
+        //get name of current scene
+        string sceneName = SceneLoader.GetCurrentSceneName();
+
+
+        while (sceneName == "GeneratedScene")
         {
+            if(enemies.Length == 0)
+            {
+                levelsCleared++;
+                sceneName = "";
+                SceneLoader.LoadChoice();
+            }
             
             foreach (GameObject hero in heroes)
             {
@@ -267,4 +308,9 @@ public class GameController : MonoBehaviour
         return randomDamage;
     }
 
+
+    public void StartBattle()
+    {
+        StartCoroutine(TurnLoop());
+    }
 }
