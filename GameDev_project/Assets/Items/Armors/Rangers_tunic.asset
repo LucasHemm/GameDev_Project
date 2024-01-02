@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Rangers_tunic
   m_EditorClassIdentifier: 
   itemName: Rangers Tunic
-  sprite: {fileID: 21300000, guid: 5105fe1d825990746b9a92407ea447ca, type: 3}
+  sprite: {fileID: 21300000, guid: c3950664c3dd9bc47a2d4eab9ac3ff64, type: 3}
   description: Armor fit for a Ranger
   price: 10
   defense: 2

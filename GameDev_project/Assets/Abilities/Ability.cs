@@ -13,7 +13,8 @@ public class Ability : ScriptableObject
     public int maxDamage;
     public string damageType;
     public string modifier;
-    public int uses;    
+    public int currentUses;   
+    public int maxUses; 
 
 
 

@@ -20,5 +20,6 @@ MonoBehaviour:
   maxDamage: 35
   damageType: physical
   modifier: agility
-  uses: 2
+  currentUses: 2
+  maxUses: 2
   manaCost: 0

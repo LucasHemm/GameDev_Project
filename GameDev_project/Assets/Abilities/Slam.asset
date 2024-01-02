@@ -20,5 +20,6 @@ MonoBehaviour:
   maxDamage: 18
   damageType: physical
   modifier: strength
-  uses: 2
+  currentUses: 3
+  maxUses: 3
   manaCost: 0

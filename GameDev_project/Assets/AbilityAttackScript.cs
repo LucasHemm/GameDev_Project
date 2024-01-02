@@ -84,6 +84,7 @@ public class AbilityAttackScript : MonoBehaviour
                     // Check if the enemy is in the current frontier tiles
                     if (pathfinder.currentFrontier.tiles.Contains(hitCharacter.characterTile))
                     {
+                        ability.currentUses--;
                         hitCharacter.TakeDamage(dmg, damageType);
                         currentCharacter.hasAttacked = true;
                         OnAbilityClick();

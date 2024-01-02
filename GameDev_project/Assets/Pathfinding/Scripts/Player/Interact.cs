@@ -54,8 +54,8 @@ public class Interact : MonoBehaviour
 
     private void InspectCharacter()
     {
-        if (currentTile.occupyingCharacter.Moving)
-            return;
+        //if (currentTile.occupyingCharacter.Moving)
+          //  return;
 
         currentTile.SetColor(TileColor.Highlighted);
 
@@ -94,7 +94,7 @@ public class Interact : MonoBehaviour
         return;
     }
 
-    GetComponent<AudioSource>().PlayOneShot(pop);
+    //GetComponent<AudioSource>().PlayOneShot(pop);
 }
 private bool IsEnemy(Character character)
 {
@@ -124,7 +124,7 @@ private bool IsEnemy(Character character)
 
         if (Input.GetMouseButtonDown(0))
         {
-            GetComponent<AudioSource>().PlayOneShot(click);
+            //GetComponent<AudioSource>().PlayOneShot(click);
             selectedCharacter.Move(currentPath);
             pathfinder.ResetPathfinder();
             //selectedCharacter = null;

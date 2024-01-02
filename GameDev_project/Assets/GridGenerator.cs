@@ -64,16 +64,7 @@ public class GridGenerator : MonoBehaviour
         parent.transform.position = gridPosition;
     }
 
-    void SetCharacterStartTile()
-    {
-        GameObject character = Selection.activeTransform.gameObject;
-
-        if (Physics.Raycast(character.transform.position, Vector3.down, out RaycastHit hit, 5f))
-        {
-            character.GetComponent<Character>().characterTile = hit.transform.GetComponent<Tile>();
-        }
-
-    }
+        
 
 
     //Returns gridsize vector to be random numbers between 7 and 14

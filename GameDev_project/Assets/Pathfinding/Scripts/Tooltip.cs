@@ -29,7 +29,8 @@ public class Tooltip : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
                     + "Max Damage: " + interact.selectedCharacter.ability1.maxDamage + "\n"
                     + "Damage Type: " + interact.selectedCharacter.ability1.damageType + "\n"
                     + "Modifier: " + interact.selectedCharacter.ability1.modifier + "\n"
-                    + "Uses: " + interact.selectedCharacter.ability1.uses;
+                    + "Uses: " + interact.selectedCharacter.ability1.currentUses
+                    + "/" + interact.selectedCharacter.ability1.maxUses;
         }
         if(type == "ability2"){
             message = "abilityName: " + interact.selectedCharacter.ability2.abilityName + "\n"
@@ -39,7 +40,8 @@ public class Tooltip : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
                     + "Max Damage: " + interact.selectedCharacter.ability2.maxDamage + "\n"
                     + "Damage Type: " + interact.selectedCharacter.ability2.damageType + "\n"
                     + "Modifier: " + interact.selectedCharacter.ability2.modifier + "\n"
-                    + "Uses: " + interact.selectedCharacter.ability2.uses;
+                    + "Uses: " + interact.selectedCharacter.ability2.currentUses
+                    + "/" + interact.selectedCharacter.ability2.maxUses;
         }
 
     }

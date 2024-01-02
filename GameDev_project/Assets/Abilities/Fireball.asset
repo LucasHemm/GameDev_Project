@@ -20,5 +20,6 @@ MonoBehaviour:
   maxDamage: 16
   damageType: magical
   modifier: intellect
-  uses: 3
+  currentUses: 3
+  maxUses: 3
   manaCost: 0
