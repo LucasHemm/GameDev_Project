@@ -6,37 +6,132 @@ public class GameController : MonoBehaviour
 {
     [SerializeField] public GameObject[] enemies;
     [SerializeField] public GameObject[] heroes;
+    public GameObject[] characters = new GameObject[3];
+    public GameObject[] enemyTypes = new GameObject[1];
+
 
     [SerializeField]public bool isPlayerTurn;
-    Pathfinder pathfinder;
+    public Pathfinder pathfinder;
     public Camera mainCamera; // Reference to the Main camera, assign it in the inspector
 
+    //public static GameController Instance;
+
+
+    public PersistenceBetweenScenes persistenceSO;
+    public CharacterData data;
 
     void Start()
     {
-        isPlayerTurn = true; // Start with player's turn
-        enemies = GameObject.FindGameObjectsWithTag("Enemy");
-        heroes = GameObject.FindGameObjectsWithTag("Player");
+        //try and load from json if it does not exist then create a new one
+        try
+        {
+            data = ReadAndWrite.loadFromJson();
+        }
+        catch
+        {
+            data = new CharacterData();
+            data.levelsCleared = 0;
+        }   
+
+        isPlayerTurn = false; // Start with player's turn
+        if(data.levelsCleared == 0)
+        {
+            heroes = characters;
+            enemies = enemyTypes;
+            //for each character in the persistenceSO.characters add it to persistenceSO.characters
+            
+        }
+        //if(enemies.Length == 0)
+        //{
+        //    enemies = GameObject.FindGameObjectsWithTag("Enemy");
+        //}
+        //
+        //if(heroes.Length == 0)
+        //{
+        //heroes = GameObject.FindGameObjectsWithTag("Player");
+        //}
 
         if (pathfinder == null)
             pathfinder = GameObject.Find("Pathfinder").GetComponent<Pathfinder>();
 
         mainCamera = Camera.main;
-        StartCoroutine(TurnLoop());
+        
+    }
+
+    //awake method
+    void Awake()
+    {
+        //if (Instance != null)
+        //{
+        //    //destroy gameobject  immediately if there is another instance
+        //    Destroy(gameObject);
+        //    return;
+        //}
+        //               
+        //Instance = this;
+        ////DontDestroyOnLoad(gameObject);
+        ////DontDestroyOnLoad(pathfinder);
+//
+        ////dont destory camera on load
+        ////DontDestroyOnLoad(mainCamera);
+        ////dont destroy heroes
+        //foreach (GameObject hero in heroes)
+        //{
+        //    DontDestroyOnLoad(hero);
+        //}
     }
 
     IEnumerator TurnLoop()
     {
 
-        while (true)
+        //get name of current scene
+        string sceneName = SceneLoader.GetCurrentSceneName();
+
+        
+
+
+        while (sceneName == "GeneratedScene")
         {
+            if(enemies.Length == 0)
+            {
+                //persistenceSO.armors.Clear();
+                //persistenceSO.weapons.Clear();
+                //persistenceSO.currentHealths.Clear();
+                //persistenceSO.characterClassNames.Clear();
+
+                data.armors.Clear();
+                data.weapons.Clear();
+                data.currentHealths.Clear();
+                data.characterClassNames.Clear();
+
+                foreach (GameObject hero in heroes)
+                {
+                    //persistenceSO.currentHealths.Add(hero.GetComponent<Character>().currentHealth);
+                    //persistenceSO.armors.Add(hero.GetComponent<Character>().armor);
+                    //persistenceSO.weapons.Add(hero.GetComponent<Character>().weapon);
+                    //persistenceSO.characterClassNames.Add(hero.GetComponent<Character>().characterClass.className);
+
+                    data.currentHealths.Add(hero.GetComponent<Character>().currentHealth);
+                    data.armors.Add(hero.GetComponent<Character>().armor);
+                    data.weapons.Add(hero.GetComponent<Character>().weapon);
+                    data.characterClassNames.Add(hero.GetComponent<Character>().characterClass.className);
+
+                }
+
+                data.levelsCleared++;
+                ReadAndWrite.SaveToJson(data);
+                sceneName = "";
+                SceneLoader.LoadChoice();
+            }
             
             foreach (GameObject hero in heroes)
             {
             Character heroCharacter = hero.GetComponent<Character>();
             if (heroCharacter.currentHealth <= 0)
             {
+                heroCharacter.characterTile.Occupied = false;   
                 RemoveFromHeroArray(hero, heroes);
+                //RemoveFromHeroArray(hero, characters);
                 Destroy(hero);
                 //break;
 
@@ -50,6 +145,7 @@ public class GameController : MonoBehaviour
             Character enemyCharacter = enemy.GetComponent<Character>();
             if (enemyCharacter.currentHealth <= 0)
             {
+                enemyCharacter.characterTile.Occupied = false;
                 RemoveFromEnemyArray(enemy, enemies);
                 Destroy(enemy);
                 //break;
@@ -57,6 +153,11 @@ public class GameController : MonoBehaviour
             }
             if (isPlayerTurn)
             {
+                if(heroes.Length == 0)  
+                {
+                    sceneName = "";
+                    SceneLoader.LoadEnd();
+                }
                 mainCamera.GetComponent<Interact>().enabled = true; // Enable Interact script
                 yield return StartCoroutine(PlayerTurn());
             }
@@ -267,4 +368,9 @@ public class GameController : MonoBehaviour
         return randomDamage;
     }
 
+
+    public void StartBattle()
+    {
+        StartCoroutine(TurnLoop());
+    }
 }

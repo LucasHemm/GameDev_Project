@@ -41,7 +41,7 @@ public class Character : MonoBehaviour
         maxHealth += characterClass.health;
     if(armor != null)
         maxHealth += armor.bonusHealth;
-    currentHealth = maxHealth;
+        currentHealth = maxHealth;
     healthBar.SetMaxHealth(maxHealth);
     }
 

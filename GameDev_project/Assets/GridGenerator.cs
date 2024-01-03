@@ -10,11 +10,15 @@ public class GridGenerator : MonoBehaviour
     [SerializeField] int enemyCount = 3;
     [SerializeField] GameObject enemyPrefab;
 
-    [SerializeField] GameObject playerPrefab;
+    public GameController gameController;
 
     [SerializeField] GameObject[] flowers = new GameObject[8];
 
     [SerializeField] GameObject[] obstacles = new GameObject[6];
+
+    public PersistenceBetweenScenes persistenceSO;
+
+    public CharacterData data;
 
     
     #region member fields
@@ -28,6 +32,7 @@ public class GridGenerator : MonoBehaviour
 
     void Start()
     {
+        gameController = GameObject.Find("GameController").GetComponent<GameController>();
         //find start tile by name
         startTile = GameObject.Find("StartTile");
         CreateGrid(RandomizeGridSize());
@@ -40,6 +45,7 @@ public class GridGenerator : MonoBehaviour
         //Spawn enemies
         SpawnEnemies();
         SpawnPlayer();
+        gameController.StartBattle();
     }
 
      public void CreateGrid(Vector2Int gridSize)
@@ -64,7 +70,7 @@ public class GridGenerator : MonoBehaviour
         parent.transform.position = gridPosition;
     }
 
-        
+
 
 
     //Returns gridsize vector to be random numbers between 7 and 14
@@ -164,6 +170,7 @@ public class GridGenerator : MonoBehaviour
    //Spawn enemies on random tiles
     void SpawnEnemies()
     {
+        List<GameObject> enemies = new List<GameObject>();
         for (int i = 0; i < enemyCount; i++)
         {
             Tile tile = GetRandomTile();
@@ -172,9 +179,13 @@ public class GridGenerator : MonoBehaviour
                 i--;
                 continue;
             }
+            enemyPrefab = gameController.enemyTypes[Random.Range(0, gameController.enemies.Length)];
             GameObject enemy = Instantiate(enemyPrefab, tile.transform.position, Quaternion.identity);
             enemy.GetComponent<Character>().FinalizePosition(tile);
+            enemies.Add(enemy);
         }
+        gameController.enemies = enemies.ToArray();
+
     }
 
     Tile GetRandomTile()
@@ -187,15 +198,62 @@ public class GridGenerator : MonoBehaviour
 
     void SpawnPlayer()
     {
-        Tile tile = GetRandomTile();
-        if (tile.Occupied)
+        data = gameController.data;
+        
+        if(data.levelsCleared != 0)
         {
-            SpawnPlayer();
+            Debug.Log("persistenceSO.characters[0] != null");
+            List<GameObject> heroes = new List<GameObject>();
+
+            int counter = 0;
+            foreach(GameObject hero in gameController.characters)
+            {
+                Debug.Log(counter);
+                if(data.characterClassNames.Contains(hero.GetComponent<Character>().characterClass.className))
+                {
+                    Debug.Log("yessir");
+                    
+                
+                Tile tile = GetRandomTile();
+                while (tile.Occupied)
+                {   
+                    tile = GetRandomTile();
+                }
+                
+                GameObject player = Instantiate(hero, tile.transform.position, Quaternion.identity);
+                player.GetComponent<Character>().healthBar.SetHealth(data.currentHealths[counter]);
+                player.GetComponent<Character>().currentHealth = data.currentHealths[counter];
+                player.GetComponent<Character>().armor = data.armors[counter];
+                player.GetComponent<Character>().weapon = data.weapons[counter];
+                player.GetComponent<Character>().characterClass.className = data.characterClassNames[counter];
+                player.GetComponent<Character>().FinalizePosition(tile);
+                heroes.Add(player);
+                counter++;  
+            
+            
+              }
+            }
+            gameController.heroes = heroes.ToArray();
             return;
         }
-        GameObject player = Instantiate(playerPrefab, tile.transform.position, Quaternion.identity);
-        player.GetComponent<Character>().FinalizePosition(tile);
-        
+        else
+        {
+        Debug.Log("**************persistenceSO.characters[0] == null");
+        List<GameObject> heroes = new List<GameObject>();
+        //Character charactertest;
+        foreach(GameObject hero in gameController.characters)
+        {
+            Tile tile = GetRandomTile();
+            while (tile.Occupied)
+            {
+                tile = GetRandomTile();
+            }
+            GameObject player = Instantiate(hero, tile.transform.position, Quaternion.identity);
+            player.GetComponent<Character>().FinalizePosition(tile);
+            heroes.Add(player);
+        }
+        gameController.heroes = heroes.ToArray();
+        }
     }
 
     //Spawns flowers on 
