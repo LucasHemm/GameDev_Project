@@ -1,25 +1,17 @@
-public enum Difficulty
-{
-    Easy,
-    Medium,
-    Nightmare
-}
+using System;
 
-public static class DifficultyExtensions
+[System.Serializable]
+
+public class Difficulty
 {
-    public static string GetDisplayName(this Difficulty difficulty)
+    public string difficultyName;
+    public int xpCost;
+    public bool unlocked;
+
+    public Difficulty(string difficultyName, int xpCost, bool unlocked)
     {
-        switch (difficulty)
-        {
-            case Difficulty.Easy:
-                return "Easy";
-            case Difficulty.Medium:
-                return "Medium";
-            case Difficulty.Nightmare:
-                return "Nightmare";
-            default:
-                return difficulty.ToString(); // If an unknown difficulty is encountered, use its string representation
-        }
+        this.difficultyName = difficultyName;
+        this.xpCost = xpCost;
+        this.unlocked = unlocked;
     }
 }
-

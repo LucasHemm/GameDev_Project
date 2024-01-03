@@ -4,16 +4,24 @@ using System.Collections.Generic;
 [Serializable]
 public class GameData
 {
-    public int xpGained;
-    public List<string> unlockedCharacters;
-    public Difficulty selectedDifficulty;
-    public int stagesCompleted;
+    public int totalXP;
+    public int startingGold;
+    public int totalGold;
+    public int warriorLevel;
+    public int mageLevel;
+    public int rangerLevel;
+    public List<Difficulty> difficulties;
+    public int levelsCleared;
 
-    public GameData(int xp, List<string> characters, Difficulty difficulty)
+    public GameData(int totalXP, int startingGold, int totalGold, int warriorLevel, int mageLevel, int rangerLevel, List<Difficulty> difficulties, int levelsCleared)
     {
-        xpGained = xp;
-        unlockedCharacters = characters;
-        selectedDifficulty = difficulty;
-        stagesCompleted = 0;
+        this.totalXP = totalXP;
+        this.startingGold = startingGold;
+        this.totalGold = totalGold;
+        this.warriorLevel = warriorLevel;
+        this.mageLevel = mageLevel;
+        this.rangerLevel = rangerLevel;
+        this.difficulties = difficulties;
+        this.levelsCleared = levelsCleared;
     }
 }

@@ -10,6 +10,8 @@ public class ReadAndWrite : MonoBehaviour
     public List<Armor> armors = new List<Armor>(3);
     public List<Weapon> weapons = new List<Weapon>(3);
     public int levelsCleared;
+    public int collectedGold;
+    public int collectedXP;
 
     public static void SaveToJson(CharacterData newData)
     {

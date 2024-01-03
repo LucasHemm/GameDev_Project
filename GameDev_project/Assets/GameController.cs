@@ -19,9 +19,27 @@ public class GameController : MonoBehaviour
 
     public PersistenceBetweenScenes persistenceSO;
     public CharacterData data;
+    public int currentGold = 0;
+    public int currentXP = 0;
+    public GameData gameData;
+
 
     void Start()
     {
+        try
+        {
+            gameData = SaveSystem.LoadGame();
+        }
+        catch
+        {
+            Debug.Log("Creating new game data");
+            List<Difficulty> difficulties = new List<Difficulty>();
+            difficulties.Add(new Difficulty("Easy", 1, true));
+            difficulties.Add(new Difficulty("Medium", 2, false));
+            difficulties.Add(new Difficulty("Hard", 3, false));
+            gameData = new GameData(0, 0, 0, 1, 1, 1, difficulties, 0);   
+            SaveSystem.SaveGame(gameData);
+        }
         //try and load from json if it does not exist then create a new one
         try
         {
@@ -31,6 +49,8 @@ public class GameController : MonoBehaviour
         {
             data = new CharacterData();
             data.levelsCleared = 0;
+            data.collectedGold = gameData.startingGold;
+            data.collectedXP = 0;
         }   
 
         isPlayerTurn = false; // Start with player's turn
@@ -115,6 +135,10 @@ public class GameController : MonoBehaviour
                     data.armors.Add(hero.GetComponent<Character>().armor);
                     data.weapons.Add(hero.GetComponent<Character>().weapon);
                     data.characterClassNames.Add(hero.GetComponent<Character>().characterClass.className);
+                    data.collectedGold = currentGold;
+                    data.collectedXP = currentXP;
+                    Debug.Log("collected gold: " + data.collectedGold);
+                    Debug.Log("collected xp: " + data.collectedXP);
 
                 }
 
@@ -145,6 +169,8 @@ public class GameController : MonoBehaviour
             Character enemyCharacter = enemy.GetComponent<Character>();
             if (enemyCharacter.currentHealth <= 0)
             {
+                currentGold += 5;
+                currentXP += 5;
                 enemyCharacter.characterTile.Occupied = false;
                 RemoveFromEnemyArray(enemy, enemies);
                 Destroy(enemy);

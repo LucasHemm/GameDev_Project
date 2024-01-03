@@ -6,9 +6,10 @@ public static class SaveSystem
 {
     public static void SaveGame(GameData gameData)
     {
+        Debug.Log("Saving game");
         //save file to persistent data path, and save as binary
         BinaryFormatter formatter = new BinaryFormatter();
-        string path = Application.persistentDataPath + "/mlmgame.data";
+        string path = Application.dataPath + "/mlmgame.data";
         FileStream stream = new FileStream(path, FileMode.Create);
 
         formatter.Serialize(stream, gameData);
@@ -17,22 +18,16 @@ public static class SaveSystem
 
     public static GameData LoadGame()
     {
-        string path = Application.persistentDataPath + "/mlmgame.data";
-        if (File.Exists(path))
-        {
+        GameData gameData;
+        string path = Application.dataPath + "/mlmgame.data";
+        
             BinaryFormatter formatter = new BinaryFormatter();
             FileStream stream = new FileStream(path, FileMode.Open);
 
-            GameData gameData = formatter.Deserialize(stream) as GameData;
+            gameData = formatter.Deserialize(stream) as GameData;
             stream.Close();
 
-            return gameData;
-        }
-        else
-        {
-            Debug.LogError("Save file not found in " + path);
-            return null;
-        }
+       return gameData;
     }
 
     public static void DeleteSave()
