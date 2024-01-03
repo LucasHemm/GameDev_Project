@@ -18,6 +18,7 @@ ScriptsOnlyBuild:
     - MenuListener
     - PathIllustrator
     - Pathfinder
+    - PersistenceBetweenScenes
     - SceneLoader
     - Tile
     - Tooltip
@@ -189,6 +190,31 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 224
       Script: {instanceID: 0}
+    Assets/Scenes/EndScene.unity:
+    - Class: 1
+      Script: {instanceID: 0}
+    - Class: 4
+      Script: {instanceID: 0}
+    - Class: 20
+      Script: {instanceID: 0}
+    - Class: 21
+      Script: {instanceID: 0}
+    - Class: 28
+      Script: {instanceID: 0}
+    - Class: 48
+      Script: {instanceID: 0}
+    - Class: 81
+      Script: {instanceID: 0}
+    - Class: 89
+      Script: {instanceID: 0}
+    - Class: 104
+      Script: {instanceID: 0}
+    - Class: 108
+      Script: {instanceID: 0}
+    - Class: 157
+      Script: {instanceID: 0}
+    - Class: 196
+      Script: {instanceID: 0}
     Assets/Scenes/GeneratedScene.unity:
     - Class: 1
       Script: {instanceID: 0}
@@ -293,9 +319,11 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 7426}
     - Class: 114
-      Script: {instanceID: 38138}
+      Script: {instanceID: 24022}
     - Class: 114
-      Script: {instanceID: 38140}
+      Script: {instanceID: 24086}
+    - Class: 114
+      Script: {instanceID: 38018}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 120
@@ -756,7 +784,7 @@ ScriptsOnlyBuild:
     className: TestResultRendererCallback
   - hash:
       serializedVersion: 2
-      Hash: 85b65a17439e4d9fe02e4d89bfe9dd66
+      Hash: 128d9c17e384edc9beb424a0813c241b
     assemblyName: Assembly-CSharp
     namespaceName: 
     className: GridGenerator
@@ -1026,7 +1054,7 @@ ScriptsOnlyBuild:
     className: DictionaryAsset
   - hash:
       serializedVersion: 2
-      Hash: 23f10b7c7b14d93305849e37547c04c4
+      Hash: 6af384e0145c2a1f7d09fa921d7f6269
     assemblyName: Assembly-CSharp
     namespaceName: 
     className: GameController
@@ -1666,6 +1694,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.VisualScripting.Core
     namespaceName: Unity.VisualScripting
     className: UnityOnSliderValueChangedMessageListener
+  - hash:
+      serializedVersion: 2
+      Hash: 3942862d2174afe6d86d6a420476211d
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: PersistenceBetweenScenes
   platform: 19
   scenePathNames:
   - Assets/Scenes/MainMenu.unity
@@ -1673,4 +1707,5 @@ ScriptsOnlyBuild:
   - Assets/Scenes/GeneratedScene.unity
   - Assets/Scenes/ShopScene.unity
   - Assets/Scenes/RestScene.unity
+  - Assets/Scenes/EndScene.unity
   playerPath: C:/Users/lijo2/OneDrive/Dokumenter/Unity_games/GameDev_project.exe

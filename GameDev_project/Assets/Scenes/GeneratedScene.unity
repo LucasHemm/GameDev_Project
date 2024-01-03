@@ -343,8 +343,10 @@ MonoBehaviour:
   enemyTypes:
   - {fileID: 8561752231486868281, guid: 0dc916b69848e2742853590801511583, type: 3}
   isPlayerTurn: 0
-  mainCamera: {fileID: 0}
+  pathfinder: {fileID: 1297989425}
+  mainCamera: {fileID: 2018565371}
   levelsCleared: 0
+  persistenceSO: {fileID: 11400000, guid: 8ad725d9b2db5af468fea796e07c5ce7, type: 2}
 --- !u!4 &803214284
 Transform:
   m_ObjectHideFlags: 0
@@ -416,6 +418,7 @@ MonoBehaviour:
   - {fileID: 1700574814636690, guid: 0e40fc051ed65994baf499c5b9715ce0, type: 3}
   - {fileID: 1921170663168204, guid: 2f88bb42a1ce0c043834b471617d3b2a, type: 3}
   - {fileID: 1816565156058472, guid: f7968a2e493ab01448ea52078fa8a896, type: 3}
+  persistenceSO: {fileID: 11400000, guid: 8ad725d9b2db5af468fea796e07c5ce7, type: 2}
 --- !u!4 &966654053
 Transform:
   m_ObjectHideFlags: 0

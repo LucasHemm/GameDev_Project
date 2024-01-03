@@ -30,5 +30,9 @@ public class SceneLoader : MonoBehaviour
     {
         return UnityEngine.SceneManagement.SceneManager.GetActiveScene().name;
     }
+    public static void LoadEnd()
+    {
+        UnityEngine.SceneManagement.SceneManager.LoadScene("EndScene");
+    }
 
 }
