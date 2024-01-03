@@ -18,11 +18,23 @@ public class GameController : MonoBehaviour
 
 
     public PersistenceBetweenScenes persistenceSO;
+    public CharacterData data;
 
     void Start()
     {
+        //try and load from json if it does not exist then create a new one
+        try
+        {
+            data = ReadAndWrite.loadFromJson();
+        }
+        catch
+        {
+            data = new CharacterData();
+            data.levelsCleared = 0;
+        }   
+
         isPlayerTurn = false; // Start with player's turn
-        if(persistenceSO.levelsCleared == 0)
+        if(data.levelsCleared == 0)
         {
             heroes = characters;
             enemies = enemyTypes;
@@ -82,20 +94,32 @@ public class GameController : MonoBehaviour
         {
             if(enemies.Length == 0)
             {
-                persistenceSO.armors.Clear();
-                persistenceSO.weapons.Clear();
-                persistenceSO.currentHealths.Clear();
-                persistenceSO.characterClassNames.Clear();
+                //persistenceSO.armors.Clear();
+                //persistenceSO.weapons.Clear();
+                //persistenceSO.currentHealths.Clear();
+                //persistenceSO.characterClassNames.Clear();
+
+                data.armors.Clear();
+                data.weapons.Clear();
+                data.currentHealths.Clear();
+                data.characterClassNames.Clear();
 
                 foreach (GameObject hero in heroes)
                 {
-                    persistenceSO.currentHealths.Add(hero.GetComponent<Character>().currentHealth);
-                    persistenceSO.armors.Add(hero.GetComponent<Character>().armor);
-                    persistenceSO.weapons.Add(hero.GetComponent<Character>().weapon);
-                    persistenceSO.characterClassNames.Add(hero.GetComponent<Character>().characterClass.className);
+                    //persistenceSO.currentHealths.Add(hero.GetComponent<Character>().currentHealth);
+                    //persistenceSO.armors.Add(hero.GetComponent<Character>().armor);
+                    //persistenceSO.weapons.Add(hero.GetComponent<Character>().weapon);
+                    //persistenceSO.characterClassNames.Add(hero.GetComponent<Character>().characterClass.className);
+
+                    data.currentHealths.Add(hero.GetComponent<Character>().currentHealth);
+                    data.armors.Add(hero.GetComponent<Character>().armor);
+                    data.weapons.Add(hero.GetComponent<Character>().weapon);
+                    data.characterClassNames.Add(hero.GetComponent<Character>().characterClass.className);
+
                 }
 
-                persistenceSO.levelsCleared++;
+                data.levelsCleared++;
+                ReadAndWrite.SaveToJson(data);
                 sceneName = "";
                 SceneLoader.LoadChoice();
             }

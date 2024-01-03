@@ -381,6 +381,8 @@
 "Assets/Pathfinding/Scripts/Tooltip.cs"
 "Assets/Pathfinding/Scripts/TooltipManager.cs"
 "Assets/PersistenceBetweenScenes.cs"
+"Assets/SaveAndLoad/CharacterData.cs"
+"Assets/SaveAndLoad/ReadAndWrite.cs"
 "Assets/SceneLoader.cs"
 "Assets/TextMesh Pro/Examples & Extras/Scripts/Benchmark01.cs"
 "Assets/TextMesh Pro/Examples & Extras/Scripts/Benchmark01_UGUI.cs"

@@ -52,6 +52,7 @@ ScriptsOnlyBuild:
     - UnityEngine.UI.Slider
   serializedClasses:
     Assembly-CSharp:
+    - CharacterData
     - Frontier
     Unity.TextMeshPro:
     - TMPro.FaceInfo_Legacy
@@ -321,9 +322,9 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 7428}
     - Class: 114
-      Script: {instanceID: 23858}
+      Script: {instanceID: 23904}
     - Class: 114
-      Script: {instanceID: 23922}
+      Script: {instanceID: 23968}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 120
@@ -784,7 +785,7 @@ ScriptsOnlyBuild:
     className: TestResultRendererCallback
   - hash:
       serializedVersion: 2
-      Hash: 128d9c17e384edc9beb424a0813c241b
+      Hash: b955f28652e87b00e152a9ac3cceb54f
     assemblyName: Assembly-CSharp
     namespaceName: 
     className: GridGenerator
@@ -1054,7 +1055,7 @@ ScriptsOnlyBuild:
     className: DictionaryAsset
   - hash:
       serializedVersion: 2
-      Hash: 6af384e0145c2a1f7d09fa921d7f6269
+      Hash: 3e78579a13bf1f4975f852fabcd10225
     assemblyName: Assembly-CSharp
     namespaceName: 
     className: GameController
@@ -1700,6 +1701,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.VisualScripting.Core
     namespaceName: Unity.VisualScripting
     className: UnityOnSliderValueChangedMessageListener
+  - hash:
+      serializedVersion: 2
+      Hash: 55de641cde9c1a2657913b15667871ed
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: ReadAndWrite
   platform: 19
   scenePathNames:
   - Assets/Scenes/MainMenu.unity

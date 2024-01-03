@@ -18,6 +18,8 @@ public class GridGenerator : MonoBehaviour
 
     public PersistenceBetweenScenes persistenceSO;
 
+    public CharacterData data;
+
     
     #region member fields
     GameObject parent;
@@ -196,9 +198,9 @@ public class GridGenerator : MonoBehaviour
 
     void SpawnPlayer()
     {
-
+        data = gameController.data;
         
-        if(persistenceSO.levelsCleared != 0)
+        if(data.levelsCleared != 0)
         {
             Debug.Log("persistenceSO.characters[0] != null");
             List<GameObject> heroes = new List<GameObject>();
@@ -207,7 +209,7 @@ public class GridGenerator : MonoBehaviour
             foreach(GameObject hero in gameController.characters)
             {
                 Debug.Log(counter);
-                if(persistenceSO.characterClassNames.Contains(hero.GetComponent<Character>().characterClass.className))
+                if(data.characterClassNames.Contains(hero.GetComponent<Character>().characterClass.className))
                 {
                     Debug.Log("yessir");
                     
@@ -218,13 +220,12 @@ public class GridGenerator : MonoBehaviour
                     tile = GetRandomTile();
                 }
                 
-                Debug.Log("hero.GetComponent<Character>().currentHealth = " + persistenceSO.currentHealths[counter] + "" + persistenceSO.armors[counter].itemName + "" + persistenceSO.weapons[counter].itemName);
                 GameObject player = Instantiate(hero, tile.transform.position, Quaternion.identity);
-                player.GetComponent<Character>().healthBar.SetHealth(persistenceSO.currentHealths[counter]);
-                player.GetComponent<Character>().currentHealth = persistenceSO.currentHealths[counter];
-                player.GetComponent<Character>().armor = persistenceSO.armors[counter];
-                player.GetComponent<Character>().weapon = persistenceSO.weapons[counter];
-                player.GetComponent<Character>().characterClass.className = persistenceSO.characterClassNames[counter];
+                player.GetComponent<Character>().healthBar.SetHealth(data.currentHealths[counter]);
+                player.GetComponent<Character>().currentHealth = data.currentHealths[counter];
+                player.GetComponent<Character>().armor = data.armors[counter];
+                player.GetComponent<Character>().weapon = data.weapons[counter];
+                player.GetComponent<Character>().characterClass.className = data.characterClassNames[counter];
                 player.GetComponent<Character>().FinalizePosition(tile);
                 heroes.Add(player);
                 counter++;  
