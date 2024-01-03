@@ -19386,13 +19386,8 @@
       "Annotation": "WriteText Library/Bee/artifacts/1900b0aE.dag/Assembly-CSharp.rsp",
       "DisplayName": "Writing Assembly-CSharp.rsp",
       "ActionType": "WriteFile",
-<<<<<<< HEAD
-      "PayloadOffset": 1463363,
-      "PayloadLength": 36299,
-=======
       "PayloadOffset": 1463418,
-      "PayloadLength": 36013,
->>>>>>> demarcus-cousins
+      "PayloadLength": 36518,
       "PayloadDebugContentSnippet": "-target:library\r\n-out:\"Library",
       "Inputs": [],
       "Outputs": [
@@ -19404,11 +19399,7 @@
       "Annotation": "WriteText Library/Bee/artifacts/1900b0aE.dag/Assembly-CSharp.rsp2",
       "DisplayName": "Writing Assembly-CSharp.rsp2",
       "ActionType": "WriteFile",
-<<<<<<< HEAD
-      "PayloadOffset": 1499749,
-=======
-      "PayloadOffset": 1499518,
->>>>>>> demarcus-cousins
+      "PayloadOffset": 1500023,
       "PayloadLength": 0,
       "PayloadDebugContentSnippet": "",
       "Inputs": [],
@@ -19957,11 +19948,7 @@
       "Annotation": "WriteText Library/Bee/artifacts/1900b0aE.dag/Assembly-CSharp.dll.mvfrm.rsp",
       "DisplayName": "Writing Assembly-CSharp.dll.mvfrm.rsp",
       "ActionType": "WriteFile",
-<<<<<<< HEAD
-      "PayloadOffset": 1499845,
-=======
-      "PayloadOffset": 1499614,
->>>>>>> demarcus-cousins
+      "PayloadOffset": 1500119,
       "PayloadLength": 9366,
       "PayloadDebugContentSnippet": "Library\\Bee\\artifacts\\mvdfrm\\U",
       "Inputs": [],
@@ -20206,15 +20193,9 @@
       "Annotation": "WriteText Library/Bee/artifacts/1900b0aE.dag/Assembly-CSharp-Editor.UnityAdditionalFile.txt",
       "DisplayName": "Writing Assembly-CSharp-Editor.UnityAdditionalFile.txt",
       "ActionType": "WriteFile",
-<<<<<<< HEAD
-      "PayloadOffset": 1509324,
-      "PayloadLength": 73,
-      "PayloadDebugContentSnippet": "C:\\Users\\lijo2\\OneDrive\\Dokume",
-=======
-      "PayloadOffset": 1509093,
+      "PayloadOffset": 1509598,
       "PayloadLength": 74,
       "PayloadDebugContentSnippet": "C:\\Users\\marcu\\OneDrive\\Skrive",
->>>>>>> demarcus-cousins
       "Inputs": [],
       "Outputs": [
         "Library/Bee/artifacts/1900b0aE.dag/Assembly-CSharp-Editor.UnityAdditionalFile.txt"
@@ -20225,11 +20206,7 @@
       "Annotation": "WriteText Library/Bee/artifacts/1900b0aE.dag/Assembly-CSharp-Editor.rsp",
       "DisplayName": "Writing Assembly-CSharp-Editor.rsp",
       "ActionType": "WriteFile",
-<<<<<<< HEAD
-      "PayloadOffset": 1509490,
-=======
-      "PayloadOffset": 1509260,
->>>>>>> demarcus-cousins
+      "PayloadOffset": 1509765,
       "PayloadLength": 35431,
       "PayloadDebugContentSnippet": "-target:library\r\n-out:\"Library",
       "Inputs": [],
@@ -20242,11 +20219,7 @@
       "Annotation": "WriteText Library/Bee/artifacts/1900b0aE.dag/Assembly-CSharp-Editor.rsp2",
       "DisplayName": "Writing Assembly-CSharp-Editor.rsp2",
       "ActionType": "WriteFile",
-<<<<<<< HEAD
-      "PayloadOffset": 1545015,
-=======
-      "PayloadOffset": 1544785,
->>>>>>> demarcus-cousins
+      "PayloadOffset": 1545290,
       "PayloadLength": 0,
       "PayloadDebugContentSnippet": "",
       "Inputs": [],
@@ -20570,11 +20543,7 @@
       "Annotation": "WriteText Library/Bee/artifacts/1900b0aE.dag/Assembly-CSharp-Editor.dll.mvfrm.rsp",
       "DisplayName": "Writing Assembly-CSharp-Editor.dll.mvfrm.rsp",
       "ActionType": "WriteFile",
-<<<<<<< HEAD
-      "PayloadOffset": 1545118,
-=======
-      "PayloadOffset": 1544888,
->>>>>>> demarcus-cousins
+      "PayloadOffset": 1545393,
       "PayloadLength": 10320,
       "PayloadDebugContentSnippet": "Library\\Bee\\artifacts\\mvdfrm\\U",
       "Inputs": [],

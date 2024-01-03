@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 
-public enum CharacterClass
+public enum UnlockableClasses
 {
     Warrior,
     Mage,
@@ -32,7 +32,7 @@ public class GameManager : MonoBehaviour
     {
         //player actions or events that affect game state
         GainXP(150);
-        PurchaseCharacter(CharacterClass.Mage);
+        PurchaseCharacter(UnlockableClasses.Mage);
 
         CompleteStage(Difficulty.Easy, 3);
         CompleteStage(Difficulty.Medium, 3);
@@ -46,20 +46,22 @@ public class GameManager : MonoBehaviour
         SaveSystem.SaveGame(gameData);
     }
 
-    private void PurchaseCharacter(CharacterClass characterClass)
+    private void PurchaseCharacter(UnlockableClasses unlockableClasses)
+{
+    // Purchasing a class with XP
+    int cost = GetCharacterCost(unlockableClasses);
+
+    // Check if the class is not already unlocked and if the player has enough XP
+    if (gameData.xpGained >= cost && !gameData.unlockedCharacters.Contains(unlockableClasses.ToString()))
     {
-        //purchasing a class with XP
-        int cost = GetCharacterCost(characterClass);
-
-        if (gameData.xpGained >= cost && !gameData.unlockedCharacters.Contains(characterClass.ToString()))
-        {
-            gameData.xpGained -= cost;
-            gameData.unlockedCharacters.Add(characterClass.ToString());
-            Debug.Log(characterClass + " class purchased!");
-        }
-
-        SaveSystem.SaveGame(gameData);
+        gameData.xpGained -= cost;
+        gameData.unlockedCharacters.Add(unlockableClasses.ToString());
+        Debug.Log(unlockableClasses + " class purchased!");
     }
+
+    SaveSystem.SaveGame(gameData);
+}
+
 
     private void CompleteStage(Difficulty difficulty, int stagesCompleted)
     {
@@ -84,16 +86,16 @@ public class GameManager : MonoBehaviour
         SaveSystem.SaveGame(gameData);
     }
 
-    private int GetCharacterCost(CharacterClass characterClass)
+    private int GetCharacterCost(UnlockableClasses unlockableClasses)
     {
         //XP cost for each character 
-        switch (characterClass)
+        switch (unlockableClasses)
         {
-            case CharacterClass.Warrior:
+            case UnlockableClasses.Warrior:
                 return 200;
-            case CharacterClass.Mage:
+            case UnlockableClasses.Mage:
                 return 200;
-            case CharacterClass.Ranger:
+            case UnlockableClasses.Ranger:
                 return 200;
             default:
                 return 0;
