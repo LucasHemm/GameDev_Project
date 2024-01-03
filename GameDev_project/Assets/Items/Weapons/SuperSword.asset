@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 517b2544b28c0c64a8352753f4bece17, type: 3}
+  m_Name: SuperSword
+  m_EditorClassIdentifier: 
+  itemName: Battle axe
+  sprite: {fileID: 21300000, guid: f82f462d990f0934f82c3bb1d0f0dde7, type: 3}
+  description: An axe that is sure to crush yout enemies
+  price: 55
+  minDamage: 10
+  maxDamage: 18
+  range: 1
+  type: Melee

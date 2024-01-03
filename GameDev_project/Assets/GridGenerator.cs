@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class GridGenerator : MonoBehaviour
 {
-    [SerializeField] int biomeCount = 1;
+    [SerializeField] public int biomeCount = 1;
     [SerializeField] Material[] materials = new Material[6];
     [SerializeField] int enemyCount = 3;
     [SerializeField] GameObject enemyPrefab;
@@ -33,6 +33,9 @@ public class GridGenerator : MonoBehaviour
     void Start()
     {
         gameController = GameObject.Find("GameController").GetComponent<GameController>();
+        SetBiomeCount();
+        SetEnemyCount();
+
         //find start tile by name
         startTile = GameObject.Find("StartTile");
         CreateGrid(RandomizeGridSize());
@@ -76,10 +79,10 @@ public class GridGenerator : MonoBehaviour
     //Returns gridsize vector to be random numbers between 7 and 14
     Vector2Int RandomizeGridSize()
     {
-        int x = Random.Range(7, 15);
+        int x = Random.Range(7, 14);
         int y = Random.Range(7, x);
         
-        return new Vector2Int(x, y);
+        return new Vector2Int(x+biomeCount, y+biomeCount);
     }   
 
     void SetTileMaterial(List<GameObject> tiles)
@@ -291,4 +294,25 @@ public class GridGenerator : MonoBehaviour
         tile.Occupied = true;
 
     }   
+
+    private void SetBiomeCount()
+    {
+        if (gameController.data.levelsCleared < 3)
+        {
+            biomeCount = 1;
+        }
+        else if (gameController.data.levelsCleared < 6)
+        {
+            biomeCount = 2;
+        }
+        else
+        {
+            biomeCount = 3;
+        }
+    }
+
+    private void SetEnemyCount()
+    {
+        enemyCount = Random.Range(biomeCount+1, biomeCount + 4);
+    }
 }

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -345,8 +345,13 @@ MonoBehaviour:
   isPlayerTurn: 0
   pathfinder: {fileID: 1297989425}
   mainCamera: {fileID: 2018565371}
-  levelsCleared: 0
   persistenceSO: {fileID: 11400000, guid: 8ad725d9b2db5af468fea796e07c5ce7, type: 2}
+  data:
+    currentHealths: 
+    characterClassNames: []
+    levelsCleared: 0
+    armors: []
+    weapons: []
 --- !u!4 &803214284
 Transform:
   m_ObjectHideFlags: 0
@@ -391,7 +396,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: feb69602d77b9f147829899920f21e61, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  biomeCount: 3
+  biomeCount: 1
   materials:
   - {fileID: 2100000, guid: 5f6bdc96bef29b440b36bd17ffadbd16, type: 2}
   - {fileID: 2100000, guid: 69b7c7608c6498c4dbeb9a3741250e6e, type: 2}
@@ -419,6 +424,12 @@ MonoBehaviour:
   - {fileID: 1921170663168204, guid: 2f88bb42a1ce0c043834b471617d3b2a, type: 3}
   - {fileID: 1816565156058472, guid: f7968a2e493ab01448ea52078fa8a896, type: 3}
   persistenceSO: {fileID: 11400000, guid: 8ad725d9b2db5af468fea796e07c5ce7, type: 2}
+  data:
+    currentHealths: 
+    characterClassNames: []
+    levelsCleared: 0
+    armors: []
+    weapons: []
 --- !u!4 &966654053
 Transform:
   m_ObjectHideFlags: 0
