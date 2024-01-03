@@ -9,6 +9,7 @@ public class GridGenerator : MonoBehaviour
     [SerializeField] Material[] materials = new Material[6];
     [SerializeField] int enemyCount = 3;
     [SerializeField] GameObject enemyPrefab;
+    public GameObject eliteEnemyPrefab;
 
     public GameController gameController;
 
@@ -19,6 +20,8 @@ public class GridGenerator : MonoBehaviour
     public PersistenceBetweenScenes persistenceSO;
 
     public CharacterData data;
+
+    public GameData gameData;
 
     
     #region member fields
@@ -173,19 +176,56 @@ public class GridGenerator : MonoBehaviour
    //Spawn enemies on random tiles
     void SpawnEnemies()
     {
+        List<Difficulty> difficuties = gameController.gameData.difficulties;
+        string difficultyName = "";
+        foreach(Difficulty difficulty in difficuties)
+        {
+            if(difficulty.unlocked == true)
+            {
+                difficultyName = difficulty.difficultyName;
+            }
+            
+        }
+        Debug.Log(difficultyName);
         List<GameObject> enemies = new List<GameObject>();
         for (int i = 0; i < enemyCount; i++)
         {
             Tile tile = GetRandomTile();
-            if (tile.Occupied)
-            {
-                i--;
-                continue;
+            while (tile.Occupied)
+            {  
+                tile = GetRandomTile();
             }
             enemyPrefab = gameController.enemyTypes[Random.Range(0, gameController.enemies.Length)];
             GameObject enemy = Instantiate(enemyPrefab, tile.transform.position, Quaternion.identity);
             enemy.GetComponent<Character>().FinalizePosition(tile);
             enemies.Add(enemy);
+        }
+        if(difficultyName == "Medium")
+        {
+            Tile tile = GetRandomTile();
+            while (tile.Occupied)
+            {  
+                tile = GetRandomTile();
+            }
+            enemyPrefab = gameController.enemyTypes[Random.Range(0, gameController.enemies.Length)];
+            GameObject enemy = Instantiate(eliteEnemyPrefab, tile.transform.position, Quaternion.identity);
+            enemy.GetComponent<Character>().FinalizePosition(tile);
+            enemies.Add(enemy);
+        }
+        if(difficultyName == "Hard")
+        {
+            for (int i = 0; i < 2; i++)
+            {
+            Tile tile = GetRandomTile();
+            while (tile.Occupied)
+            {  
+                tile = GetRandomTile();
+            }
+            enemyPrefab = gameController.enemyTypes[Random.Range(0, gameController.enemies.Length)];
+            GameObject enemy = Instantiate(eliteEnemyPrefab, tile.transform.position, Quaternion.identity);
+            enemy.GetComponent<Character>().FinalizePosition(tile);
+            enemies.Add(enemy);
+            }
         }
         gameController.enemies = enemies.ToArray();
 

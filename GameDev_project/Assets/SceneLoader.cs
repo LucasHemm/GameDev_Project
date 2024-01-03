@@ -7,7 +7,6 @@ public class SceneLoader : MonoBehaviour
     public static GameData gameData;
 
 
-
    // Loads Generated Scene
     public void LoadScene()
     {

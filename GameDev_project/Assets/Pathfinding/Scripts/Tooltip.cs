@@ -8,6 +8,10 @@ public class Tooltip : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
     public Interact interact;
 
+    public Armor armor;
+    public Weapon weapon;
+
+
     private void CreateMessage()
     {
 
@@ -42,6 +46,22 @@ public class Tooltip : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
                     + "Modifier: " + interact.selectedCharacter.ability2.modifier + "\n"
                     + "Uses: " + interact.selectedCharacter.ability2.currentUses
                     + "/" + interact.selectedCharacter.ability2.maxUses;
+        }
+        if(type == "armor"){
+            message = "Item Name: " + armor.itemName + "\n" +
+                    "Price: " + armor.price + "\n"
+                    +  "Defense: " + armor.defense + "\n"
+                    + "Magic Defense: " + armor.magicDefense + "\n"
+                    + "Description: " + armor.description;
+        }
+        if(type == "weapon"){
+            message = "Item Name: " + weapon.itemName + "\n" +
+                    "Price: " + weapon.price + "\n"
+                    +  "Min Damage: " + weapon.minDamage + "\n"
+                    + "Max Damage: " + weapon.maxDamage + "\n"
+                    + "Range: " + weapon.range + "\n"
+                    + "Type: " + weapon.type + "\n"
+                    + "Description: " + weapon.description;
         }
 
     }

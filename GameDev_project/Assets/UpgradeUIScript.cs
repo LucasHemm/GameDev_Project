@@ -20,7 +20,7 @@ public class UpgradeUIScript : MonoBehaviour
     {
         gameData = SaveSystem.LoadGame();
         goldText.text = gameData.totalGold.ToString();
-        xpText.text = gameData.totalXP.ToString();   
+        xpText.text = "Total XP:" + gameData.totalXP.ToString();   
         foreach(Difficulty difficulty in gameData.difficulties)
         {
             if(difficulty.unlocked == true)
@@ -44,19 +44,21 @@ public class UpgradeUIScript : MonoBehaviour
 
     public void UpgradeDifficulty()
     {
-        if(gameData.totalXP >= 200)
+        if(gameData.totalXP >= 10)
         {
-            gameData.totalXP -= 200;
+            gameData.totalXP -= 10;
             foreach(Difficulty difficulty in gameData.difficulties)
             {
                 if(difficulty.unlocked == false)
                 {
                     difficulty.unlocked = true;
                     difficultyText.text = "Difficulty: " + difficulty.difficultyName;
+                    SaveSystem.SaveGame(gameData);
+                    xpText.text = "Total XP:" + gameData.totalXP;
+
                     return;
                 }
             }
-            SaveSystem.SaveGame(gameData);
         }
     }
 }

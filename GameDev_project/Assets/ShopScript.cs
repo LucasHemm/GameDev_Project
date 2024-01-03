@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -20,10 +21,20 @@ public class ShopScript : MonoBehaviour
 
     public GameObject itemBackground;
 
+    public CharacterData data;
+
+    public TextMeshProUGUI goldText;
+
     string currentClassName;
+
+
+
 
     void Start()
     {
+        data = ReadAndWrite.loadFromJson();
+        goldText.text = "Gold: " + data.collectedGold.ToString();
+
         //Set all buttons to active
         WarriorButton.gameObject.SetActive(true);
         MageButton.gameObject.SetActive(true);
@@ -105,17 +116,28 @@ public class ShopScript : MonoBehaviour
 
     public void BuyArmor()
     {
-        CharacterData data = ReadAndWrite.loadFromJson();
-        int index = data.characterClassNames.IndexOf(currentClassName);
-        data.armors[index] = armor;
-        ReadAndWrite.SaveToJson(data);
+        CharacterData characterData = ReadAndWrite.loadFromJson();
+
+        if (characterData.collectedGold >= armor.price)
+        {
+            characterData.collectedGold -= armor.price;
+            int index = characterData.characterClassNames.IndexOf(currentClassName);
+            characterData.armors[index] = armor;
+            ReadAndWrite.SaveToJson(characterData);
+            goldText.text = "Gold: " + characterData.collectedGold.ToString();
+        }
     }
 
     public void BuyWeapon(int weaponIndex)
     {
         CharacterData data = ReadAndWrite.loadFromJson();
-        int index = data.characterClassNames.IndexOf(currentClassName);
-        data.weapons[index] = weapons[weaponIndex];
-        ReadAndWrite.SaveToJson(data);
+        if(data.collectedGold >= weapons[weaponIndex].price)
+        {
+            data.collectedGold -= weapons[weaponIndex].price;
+            int index = data.characterClassNames.IndexOf(currentClassName);
+            data.weapons[index] = weapons[weaponIndex];
+            ReadAndWrite.SaveToJson(data);
+            goldText.text = "Gold: " + data.collectedGold.ToString();
+        }        
     }
 }
