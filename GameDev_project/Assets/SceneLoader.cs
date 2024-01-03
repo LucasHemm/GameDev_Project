@@ -35,4 +35,10 @@ public class SceneLoader : MonoBehaviour
         UnityEngine.SceneManagement.SceneManager.LoadScene("EndScene");
     }
 
+    public static void LoadMenuAndReset()
+    {
+        ReadAndWrite.deleteJson();
+        UnityEngine.SceneManagement.SceneManager.LoadScene("MainMenu");
+    }
+
 }

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "jKuDwYeC0rLri3xE21Swt4GCiXyMurUGrrsNHQ6B2iqQ4hoEslNHg3qtqd4+H7DnC2cxIFnzqwvHkVIbuPGlkw==",
+  "dgSpecHash": "KEYOseFFyUiBLPb64pEBVnck4RWd3hmeXgBj282/FvcwKoAUj75j6cZQ4Cov59TzBGG/7AkKbMPKkb1+vwq/bQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\mrott\\Documents\\GitHub\\GameDev_Project\\GameDev_project\\Assembly-CSharp-Editor.csproj",
+  "projectFilePath": "C:\\Users\\mrott\\Documents\\GitHub\\GameDev_Project\\GameDev_project\\Assembly-CSharp.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }
