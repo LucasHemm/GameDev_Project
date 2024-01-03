@@ -171,9 +171,9 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 5076}
     - Class: 114
-      Script: {instanceID: 5766}
+      Script: {instanceID: 5768}
     - Class: 114
-      Script: {instanceID: 6080}
+      Script: {instanceID: 6082}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -305,25 +305,25 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 5076}
     - Class: 114
-      Script: {instanceID: 5766}
+      Script: {instanceID: 5608}
     - Class: 114
-      Script: {instanceID: 6080}
+      Script: {instanceID: 5768}
     - Class: 114
-      Script: {instanceID: 6454}
+      Script: {instanceID: 6082}
     - Class: 114
-      Script: {instanceID: 6876}
+      Script: {instanceID: 6456}
     - Class: 114
-      Script: {instanceID: 6914}
+      Script: {instanceID: 6878}
     - Class: 114
-      Script: {instanceID: 7346}
+      Script: {instanceID: 6916}
     - Class: 114
-      Script: {instanceID: 7426}
+      Script: {instanceID: 7348}
     - Class: 114
-      Script: {instanceID: 24022}
+      Script: {instanceID: 7428}
     - Class: 114
-      Script: {instanceID: 24086}
+      Script: {instanceID: 23858}
     - Class: 114
-      Script: {instanceID: 38018}
+      Script: {instanceID: 23922}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 120
@@ -388,9 +388,9 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 5076}
     - Class: 114
-      Script: {instanceID: 5766}
+      Script: {instanceID: 5768}
     - Class: 114
-      Script: {instanceID: 6080}
+      Script: {instanceID: 6082}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -443,9 +443,9 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 5076}
     - Class: 114
-      Script: {instanceID: 5766}
+      Script: {instanceID: 5768}
     - Class: 114
-      Script: {instanceID: 6080}
+      Script: {instanceID: 6082}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -498,9 +498,9 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 5076}
     - Class: 114
-      Script: {instanceID: 5766}
+      Script: {instanceID: 5768}
     - Class: 114
-      Script: {instanceID: 6080}
+      Script: {instanceID: 6082}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -1312,6 +1312,12 @@ ScriptsOnlyBuild:
     className: Benchmark02
   - hash:
       serializedVersion: 2
+      Hash: 3942862d2174afe6d86d6a420476211d
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: PersistenceBetweenScenes
+  - hash:
+      serializedVersion: 2
       Hash: 925a889a282ea89c4d9bd41afd22e4c2
     assemblyName: Assembly-CSharp
     namespaceName: TMPro.Examples
@@ -1694,12 +1700,6 @@ ScriptsOnlyBuild:
     assemblyName: Unity.VisualScripting.Core
     namespaceName: Unity.VisualScripting
     className: UnityOnSliderValueChangedMessageListener
-  - hash:
-      serializedVersion: 2
-      Hash: 3942862d2174afe6d86d6a420476211d
-    assemblyName: Assembly-CSharp
-    namespaceName: 
-    className: PersistenceBetweenScenes
   platform: 19
   scenePathNames:
   - Assets/Scenes/MainMenu.unity
@@ -1708,4 +1708,4 @@ ScriptsOnlyBuild:
   - Assets/Scenes/ShopScene.unity
   - Assets/Scenes/RestScene.unity
   - Assets/Scenes/EndScene.unity
-  playerPath: C:/Users/lijo2/OneDrive/Dokumenter/Unity_games/GameDev_project.exe
+  playerPath: C:/Users/lijo2/OneDrive/Dokumenter/Unity_test/GameDev_project.exe

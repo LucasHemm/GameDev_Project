@@ -21,7 +21,7 @@ public class GameController : MonoBehaviour
 
     void Start()
     {
-        isPlayerTurn = true; // Start with player's turn
+        isPlayerTurn = false; // Start with player's turn
         if(persistenceSO.levelsCleared == 0)
         {
             heroes = characters;
